@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class WordByWordScreen {
+    public static void main(String[] args) throws InterruptedException {
+        Scanner sc = new Scanner(System.in);
+
+        // Ask user to start
+        System.out.println("Type any letter or number and press ENTER to start...");
+        sc.nextLine(); // Waits for user input
+
+        String[] words = {
+            "HELLO",
+            "WORLD",
+            "FROM",
+            "JAVA"
+        };
+        
+        for (String word : words) {
+            clearScreen();
+            System.out.println(word);
+            Thread.sleep(1000); // show each word for 1 second
+        }
+        
+        clearScreen();
+        System.out.println("Done!");
+    }
+
+    // Clears the console screen
+    public static void clearScreen() {
+        try {
+            // Works in most terminals
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
